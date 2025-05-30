@@ -1,12 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "owlstacks",
-			"path": "../.."
-		},
-		{
 			"name": "gdc-uploader",
 			"path": "../../../.."
+		},
+		{
+			"name": "owlstacks",
+			"path": "../.."
 		},
 		{
 			"name": "owlkit",
