@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "owlstacks",
+			"path": "../.."
+		},
+		{
+			"name": "gdc-uploader",
+			"path": "../../../.."
+		},
+		{
+			"name": "owlkit",
+			"path": "../../../owlkit"
+		}
+	],
+	"settings": {}
+}
