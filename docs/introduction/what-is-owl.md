@@ -5,7 +5,7 @@
 The **Open Workflow Library (OWL)** is a curated, community-driven collection of scientific workflow examples (called **Quests**), tools, and reusable components. It is built around transparency, reproducibility, and ease of reuse in computational biology and related scientific domains.
 
 * **Website**: [owl.promptable.ai](https://owl.promptable.ai)
-* **CLI & SDK**: [OWLkit](https://github.com/promptable-ai/owlkit) – the command-line and Python interface for interacting with the library
+* **CLI & SDK**: [OWLkit](#owlkit-developer-toolkit) – the command-line and Python interface for interacting with the library
 * **Contact**: [hoot@promptable.ai](mailto:hoot@promptable.ai) – OWL team contact for questions, contributions, or support
 
 ## 📂 OWL Repository Structure
@@ -52,6 +52,66 @@ OWL uses the concept of **Quests** instead of generic projects. Each Quest is:
 * CWL: `component-subcomponent.cwl`
 * Script: `component-subcomponent-script.sh` or `.py`
 * Docker: `component.Dockerfile`
+
+## 🧰 OWLkit Developer Toolkit
+
+**OWLkit** is the essential developer toolkit that bridges the gap between complex workflow technologies and practical implementation. It provides a unified interface for managing the entire workflow development lifecycle.
+
+### Core Value Proposition
+
+* **Unified Interface**: Single CLI for Docker, CWL, and Seven Bridges operations
+* **Secure Credential Management**: Keyring-based storage with encrypted fallback
+* **GitHub Integration**: Native support for GitHub Container Registry with Codespaces authentication
+* **Developer Experience**: Rich console output, progress indicators, and intuitive commands
+* **Testing Framework**: Integrated CWL validation and workflow execution
+* **Cross-Platform**: Works in local development, CI/CD, and cloud environments
+
+### Key Features
+
+#### Docker Operations (`owlkit docker`)
+```bash
+owlkit docker login ghcr.io                    # Auto-detects GitHub credentials
+owlkit docker build -t myimage:latest .        # Build with progress indicators
+owlkit docker push ghcr.io/org/image:latest   # Secure push to registries
+```
+
+#### CWL Workflow Management (`owlkit cwl`)
+```bash
+owlkit cwl validate workflow.cwl               # Comprehensive validation
+owlkit cwl run workflow.cwl --input file.json  # Execute with rich output
+owlkit cwl list outputs/                       # Browse workflow results
+```
+
+#### Seven Bridges Integration (`owlkit sbpack`)
+*Coming soon* - Direct integration with Seven Bridges platform tooling
+
+### Why OWLkit Matters
+
+1. **Reduces Complexity**: Eliminates the need to learn multiple tool interfaces (docker, cwltool, gdc-client, etc.)
+2. **Improves Security**: Handles credentials safely without exposing secrets in shell history
+3. **Enhances Productivity**: Provides better UX than raw command-line tools with progress indicators and clear error messages
+4. **Ensures Consistency**: Standardizes workflow execution across different environments
+5. **Simplifies CI/CD**: Works seamlessly in GitHub Actions, GitLab CI, and other automation platforms
+
+### Real-World Example
+
+Instead of managing complex tool chains manually:
+```bash
+# Traditional approach - error-prone and verbose
+docker login ghcr.io -u $USER -p $TOKEN
+docker build -t ghcr.io/org/tool:latest .
+docker push ghcr.io/org/tool:latest
+cwltool --outdir ./results workflow.cwl inputs.json
+```
+
+With OWLkit:
+```bash
+# Unified, secure, and intuitive
+owlkit docker login ghcr.io  # Auto-detects credentials
+owlkit docker build -t ghcr.io/org/tool:latest .
+owlkit docker push ghcr.io/org/tool:latest
+owlkit cwl run workflow.cwl --input inputs.json --output-dir ./results
+```
 
 ## 🧠 Intelligence Layer
 
